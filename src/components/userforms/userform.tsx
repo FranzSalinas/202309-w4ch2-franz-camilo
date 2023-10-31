@@ -1,7 +1,7 @@
 import { User } from '../../models/user';
-import { useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
 export function UserForm() {
-  const intialState: User = {
+  const initialState: User = {
     userSurname: '',
     birthdate: '',
     gender: '',
@@ -14,35 +14,72 @@ export function UserForm() {
     accountType: '',
   };
 
+  const [userState, setUserState] = useState(initialState);
   const [actualPage, setActualPage] = useState(1);
 
-  /*  useEffect(() => {
-  /*   console.log('initial count', initialPage);
-  }); */
-
+  const handleChange = (ev: SyntheticEvent) => {
+    const control = ev.target as HTMLInputElement;
+    const value = control.type === 'checkbox' ? control.checked : control.value;
+    const name = control.name;
+    setUserState({ ...userState, [name]: value });
+  };
   const handleChangePage = (increment: number) => {
-    console.log(actualPage);
-    setActualPage(actualPage + increment);
+    if (
+      /* (actualPage === 1 &&
+        (initialState.name === userState.name ||
+          initialState.userSurname === userState.userSurname ||
+          initialState.birthdate === userState.birthdate ||
+          initialState.gender === userState.gender ||
+          initialState.email === userState.email ||
+          initialState.isOk === userState.isOk)) ||
+      (actualPage === 2 &&
+        (initialState.userName === userState.userName ||
+          initialState.password === userState.password ||
+          initialState.repeatPassword === userState.repeatPassword ||
+          userState.repeatPassword === userState.repeatPassword)) || */
+      (increment === 1 && actualPage === 4) ||
+      (increment === -1 && actualPage === 1)
+    ) {
+      console.log('completa los campos');
+      setActualPage(actualPage);
+    } else {
+      setActualPage(actualPage + increment);
+    }
   };
 
+  const handleSubmit = (event: SyntheticEvent) => {
+    event.preventDefault();
+    console.log(initialState);
+    console.log(userState);
+  };
   return (
-    <form className={`user-form_${actualPage}`}>
+    <form className={`user-form_${actualPage}`} onSubmit={handleSubmit}>
       {actualPage === 1 && (
         <>
           <div className="form-control">
             <label htmlFor="name">Nombre</label>
-            <input type="text" name="name" id="name" />
+            <input type="text" name="name" id="name" onChange={handleChange} />
           </div>
           <div className="form-control">
             <label htmlFor="userSurname">Apellido</label>
-            <input type="text" name="userSurname" id="userSurname" />
+            <input
+              type="text"
+              name="userSurname"
+              id="userSurname"
+              onChange={handleChange}
+            />
           </div>
           <div className="form-control">
             <label htmlFor="birthday">Fecha de Nacimiento</label>
-            <input type="date" name="birthday" id="birthday" />
+            <input
+              type="date"
+              name="birthday"
+              id="birthday"
+              onChange={handleChange}
+            />
           </div>
           <div className="form-control">
-            <fieldset>
+            <fieldset onChange={handleChange}>
               <legend>Selecciona tu género</legend>
               <label htmlFor="male">Male</label>
               <input type="radio" name="gender" id="male" value="Male" />
@@ -61,11 +98,21 @@ export function UserForm() {
           </div>
           <div className="form-control">
             <label htmlFor="email">Email</label>
-            <input type="text" name="email" id="email" />
+            <input
+              type="text"
+              name="email"
+              id="email"
+              onChange={handleChange}
+            />
           </div>
           <div className="form-control">
-            <label htmlFor="is-ok">Acepto términos y condiciones.</label>
-            <input type="checkbox" name="is-ok" id="is-ok" />
+            <label htmlFor="isOk">Acepto términos y condiciones.</label>
+            <input
+              type="checkbox"
+              name="isOk"
+              id="isOk"
+              onChange={handleChange}
+            />
           </div>
         </>
       )}
@@ -74,11 +121,21 @@ export function UserForm() {
         <>
           <div className="form-control">
             <label htmlFor="username">Nombre de Usuario</label>
-            <input type="text" name="username" id="username" />
+            <input
+              type="text"
+              name="username"
+              id="username"
+              onChange={handleChange}
+            />
           </div>
           <div className="form-control">
             <label htmlFor="password">Contraseña</label>
-            <input type="password" name="password" id="password" />
+            <input
+              type="password"
+              name="password"
+              id="password"
+              onChange={handleChange}
+            />
           </div>
           <div className="form-control">
             <label htmlFor="repeat_password">Repite tu contraseña</label>
@@ -86,10 +143,11 @@ export function UserForm() {
               type="password"
               name="repeat_password"
               id="repeat_password"
+              onChange={handleChange}
             />
           </div>
           <div className="form-control">
-            <fieldset>
+            <fieldset onChange={handleChange}>
               <legend>Selecciona tu tipo de cuenta</legend>
               <label htmlFor="personal_account"></label>
               <input
@@ -104,6 +162,7 @@ export function UserForm() {
                 name="type_of_account"
                 id="pro_account"
                 value="Pro"
+                onChange={handleChange}
               />
               <label htmlFor="business_account"></label>
               <input
@@ -111,15 +170,43 @@ export function UserForm() {
                 name="type_of_account"
                 id="business_account"
                 value="Business"
+                onChange={handleChange}
               />
             </fieldset>
           </div>
         </>
       )}
+      {actualPage === 3 && (
+        <>
+          <p> Tu nombre es {userState.name} </p>
+          <p> Tu apellido es {userState.userSurname} </p>
+          <p> Tu cumpleaños {userState.birthdate} </p>
+          <p> Tu email {userState.email} </p>
+          <p> Tu nombre de usuario es {userState.userName} </p>
+        </>
+      )}
+      {actualPage === 4 && (
+        <>
+          <div className="form-control">
+            <label htmlFor="username">Nombre de Usuario</label>
+            <input type="text" name="username" id="username" />
+          </div>
+          <div className="form-control">
+            <label htmlFor="password">Contraseña</label>
+            <input type="password" name="password" id="password" />
+          </div>
+        </>
+      )}
+      ;
       <div className="buttons">
-        <button onClick={() => handleChangePage(+1)}>Siguiente</button>
-        <button onClick={() => handleChangePage(-1)}>Atras</button>
+        <button type="button" onClick={() => handleChangePage(+1)}>
+          Siguiente
+        </button>
+        <button type="button" onClick={() => handleChangePage(-1)}>
+          Atras
+        </button>
       </div>
+      <button type="submit">Enviar</button>
     </form>
   );
 }
