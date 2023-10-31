@@ -58,7 +58,13 @@ export function UserForm() {
         <>
           <div className="form-control">
             <label htmlFor="name">Nombre</label>
-            <input type="text" name="name" id="name" onChange={handleChange} />
+            <input
+              type="text"
+              name="name"
+              id="name"
+              onChange={handleChange}
+              required
+            />
           </div>
           <div className="form-control">
             <label htmlFor="userSurname">Apellido</label>
@@ -67,6 +73,7 @@ export function UserForm() {
               name="userSurname"
               id="userSurname"
               onChange={handleChange}
+              required
             />
           </div>
           <div className="form-control">
@@ -76,18 +83,19 @@ export function UserForm() {
               name="birthday"
               id="birthday"
               onChange={handleChange}
+              required
             />
           </div>
           <div className="form-control">
             <fieldset onChange={handleChange}>
               <legend>Selecciona tu género</legend>
-              <label htmlFor="male">Male</label>
+              <label htmlFor="male">Hombre</label>
               <input type="radio" name="gender" id="male" value="Male" />
-              <label htmlFor="female">Female</label>
+              <label htmlFor="female">Mujer</label>
               <input type="radio" name="gender" id="female" value="Female" />
-              <label htmlFor="other">Other</label>
+              <label htmlFor="other">Otro</label>
               <input type="radio" name="gender" id="other" value="Other" />
-              <label htmlFor="prefer_no_mention">Prefer not to mention</label>
+              <label htmlFor="prefer_no_mention">Prefiero no decirlo</label>
               <input
                 type="radio"
                 name="gender"
@@ -103,21 +111,22 @@ export function UserForm() {
               name="email"
               id="email"
               onChange={handleChange}
+              required
             />
           </div>
           <div className="form-control">
-            <label htmlFor="isOk">Acepto términos y condiciones.</label>
+            <label htmlFor="isOk"> ¿Quieres recibir nuestra newsletter?</label>
             <input
               type="checkbox"
               name="isOk"
               id="isOk"
               onChange={handleChange}
+              required
             />
           </div>
         </>
       )}
       {actualPage === 2 && (
-        // Código para el formulario cuando page es igual a 2
         <>
           <div className="form-control">
             <label htmlFor="username">Nombre de Usuario</label>
@@ -126,6 +135,7 @@ export function UserForm() {
               name="username"
               id="username"
               onChange={handleChange}
+              required
             />
           </div>
           <div className="form-control">
@@ -135,6 +145,7 @@ export function UserForm() {
               name="password"
               id="password"
               onChange={handleChange}
+              required
             />
           </div>
           <div className="form-control">
@@ -144,19 +155,20 @@ export function UserForm() {
               name="repeat_password"
               id="repeat_password"
               onChange={handleChange}
+              required
             />
           </div>
           <div className="form-control">
             <fieldset onChange={handleChange}>
               <legend>Selecciona tu tipo de cuenta</legend>
-              <label htmlFor="personal_account"></label>
+              <label htmlFor="personal_account"> Personal </label>
               <input
                 type="radio"
                 name="type_of_account"
                 id="personal_account"
                 value="Personal"
               />
-              <label htmlFor="pro_account"></label>
+              <label htmlFor="pro_account"> Pro </label>
               <input
                 type="radio"
                 name="type_of_account"
@@ -164,7 +176,7 @@ export function UserForm() {
                 value="Pro"
                 onChange={handleChange}
               />
-              <label htmlFor="business_account"></label>
+              <label htmlFor="business_account"> Bussines</label>
               <input
                 type="radio"
                 name="type_of_account"
