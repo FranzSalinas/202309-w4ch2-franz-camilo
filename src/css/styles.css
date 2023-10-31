@@ -7,7 +7,17 @@
   font-size: 1.3rem;
 }
 
-.main-contaniner {
-  margin-left: 4rem;
-  margin-right: 4rem;
+fieldset {
+  border: none;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+}
+
+.form-control {
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 }
