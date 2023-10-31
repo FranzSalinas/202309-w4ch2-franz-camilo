@@ -1,5 +1,5 @@
 import { User } from '../../models/user';
-
+import { useState } from 'react';
 export function UserForm() {
   const intialState: User = {
     userSurname: '',
@@ -14,13 +14,20 @@ export function UserForm() {
     accountType: '',
   };
 
-  console.log(intialState);
-  const initialPage = 1;
-  const page = initialPage;
+  const [actualPage, setActualPage] = useState(1);
+
+  /*  useEffect(() => {
+  /*   console.log('initial count', initialPage);
+  }); */
+
+  const handleChangePage = (increment: number) => {
+    console.log(actualPage);
+    setActualPage(actualPage + increment);
+  };
 
   return (
-    <form className={`user-form_${page}`}>
-      {page === 1 && (
+    <form className={`user-form_${actualPage}`}>
+      {actualPage === 1 && (
         <>
           <div className="form-control">
             <label htmlFor="name">Nombre</label>
@@ -62,7 +69,7 @@ export function UserForm() {
           </div>
         </>
       )}
-      {page === 2 && (
+      {actualPage === 2 && (
         // Código para el formulario cuando page es igual a 2
         <>
           <div className="form-control">
@@ -109,6 +116,10 @@ export function UserForm() {
           </div>
         </>
       )}
+      <div className="buttons">
+        <button onClick={() => handleChangePage(+1)}>Siguiente</button>
+        <button onClick={() => handleChangePage(-1)}>Atras</button>
+      </div>
     </form>
   );
 }
