@@ -1,4 +1,4 @@
-type Gender = 'male' | 'female' | 'other' | 'prefer not to mention' | 'tree';
+type Gender = 'Hombre' | 'Mujer' | 'Otro' | 'Prefiero no decirlo';
 
 type AccountType = 'personal' | 'pro' | 'bussines';
 
