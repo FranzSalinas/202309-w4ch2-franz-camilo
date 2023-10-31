@@ -25,7 +25,7 @@ export function UserForm() {
   };
   const handleChangePage = (increment: number) => {
     if (
-      /* (actualPage === 1 &&
+      /*  No sabemos porque no funciona (actualPage === 1 &&
         (initialState.name === userState.name ||
           initialState.userSurname === userState.userSurname ||
           initialState.birthdate === userState.birthdate ||
