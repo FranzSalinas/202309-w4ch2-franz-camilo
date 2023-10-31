@@ -209,7 +209,7 @@ export function UserForm() {
           </div>
         </>
       )}
-      ;
+
       <div className="buttons">
         <button type="button" onClick={() => handleChangePage(+1)}>
           Siguiente
