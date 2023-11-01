@@ -53,7 +53,11 @@ export function UserForm() {
     console.log(userState);
   };
   return (
-    <form className={`user-form_${actualPage}`} onSubmit={handleSubmit}>
+    <form
+      className={`user-form_${actualPage}`}
+      onSubmit={handleSubmit}
+      role="form"
+    >
       {actualPage === 1 && (
         <>
           <div className="form-control">
