@@ -190,6 +190,7 @@ export function UserForm() {
       )}
       {actualPage === 3 && (
         <>
+          <p> ¿Son estos tus datos? </p>
           <p> Tu nombre es {userState.name} </p>
           <p> Tu apellido es {userState.userSurname} </p>
           <p> Tu cumpleaños {userState.birthdate} </p>
